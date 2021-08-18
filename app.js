@@ -12,5 +12,21 @@ function addTodo(todo){
     if(todo){
         todoText = todo.text;
     }
-    console.log(todoText);
+    // Build the <li></li>
+    if(todoText){
+        const todoEl = document.createElement("li");
+        if(todo && todo.completed){
+            todoEl.classList.add("completed");
+        }
+        todoEl.innerText = todoText;
+
+    // Mark as completed
+    todoEl.addEventListener('click', () => {
+        todoEl.classList.toggle("completed");
+    })
+
+        // Add it to the DOM
+        todosUL.appendChild(todoEl);
+        input.value = "";
+    }
 }
