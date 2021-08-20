@@ -32,31 +32,34 @@ function addTodo(todo){
     // Mark as completed
     todoEl.addEventListener('click', () => {
         todoEl.classList.toggle("completed");
-    })
+        updateLS();
+    });
 
     // Delete
     todoEl.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         todoEl.remove();
+        updateLS();
     })
 
     // Add it to the DOM
         todosUL.appendChild(todoEl);
         input.value = "";
+        updateLS();
     }
 }
 
 // Update local storage 
 function updateLS(){
-    todoEl = document.querySelectorAll('li');
+    todosEl = document.querySelectorAll("li");
 
     const todos = [];
 
-    todoEl.forEach((todoEl) => {
+    todosEl.forEach((todoEl) => {
         todos.push({
             text: todoEl.innerText,
-            completed: todoEl.classList.contains('completed')
-        });
+            completed: todoEl.classList.contains("completed")
+        }); 
     });
-    localStorage.setItem('todos', JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
